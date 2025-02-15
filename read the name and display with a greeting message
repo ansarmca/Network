@@ -1,4 +1,0 @@
-[mca@localhost ~]$ echo "enter name :";read name; echo "hello $name welcome to Linux"
-enter name :
-ansar
-hello ansar welcome to Linux
