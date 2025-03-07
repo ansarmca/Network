@@ -1,0 +1,27 @@
+
+read -p "How many elements you want to enter: " n
+
+declare -a arr
+
+for ((i=0;i<n;i++));
+do
+        read -p "Enter element $((i+1)): " arr[$i]
+done
+
+echo "Elements are : "
+
+for ((i=0;i<n;i++));
+do
+        echo "${arr[$i]}"
+done
+
+
+output:
+How many elements you want to enter: 3
+Enter element 1: 2
+Enter element 2: 4
+Enter element 3: 5
+Elements are : 
+2
+4
+5
