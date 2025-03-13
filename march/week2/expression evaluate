@@ -13,3 +13,18 @@ read d
 result=$(echo "$a * 20 - $b * 2 + $c / $d" | bc)
 
 echo "Result of the expression is : $result"
+
+
+
+output:
+-------
+
+enter value of a: 
+5
+enter value of b: 
+3
+enter value of c: 
+12
+enter value of d: 
+4
+Result of the expression is : 97
