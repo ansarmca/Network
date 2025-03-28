@@ -1,0 +1,33 @@
+dleete a line:
+-------------
+
+file='file.txt'
+linenum=3
+sed -i "${linenum}d" "$file"
+
+
+replace a line :
+---------------
+linnum=3
+newline="new line"
+sed -i "${linenum}s/.*/$newline/" "&file"
+
+
+delete a range of lines:
+sed '2,5d' filename :This will delete lines 2, 3, 4, and 5 in the file filename.
+
+rename line starting with a word:
+sed -i '/string/d' filename
+
+remove line containg string:
+sed -i 'string/d' filename
+
+insert a line:
+
+file='file.txt'
+linenum=3
+newline="new line"
+sed -i "${linemun}i $newline" "$filename"
+
+delete empty line:
+sed-i /$/d' "$file"
