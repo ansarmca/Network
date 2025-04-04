@@ -1,0 +1,33 @@
+echo -n "Enter the file name: "
+read file
+
+if [ ! -f "$file" ]; then
+    echo "File not found!"
+    exit 1
+fi
+
+echo -n "Enter the starting line number: "
+read start
+
+echo -n "Enter the ending line number: "
+read end
+sed -n "${start},${end}p" "$file"
+
+
+
+original file:
+
+1. First line
+2. Second line
+3. Third line
+4. Fourth line
+5. Fifth line
+
+result:
+
+Enter the file name: text.txt
+Enter the starting line number: 2
+Enter the ending line number: 4
+2. Second line
+3. Third line
+4. Fourth line
