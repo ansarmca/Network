@@ -1,0 +1,29 @@
+echo -n "Enter the file name: "
+read file
+
+if [ ! -f "$file" ]; then
+    echo "File not found!"
+    exit 1
+fi
+
+echo -n "Enter the text you want to append to each line: "
+read append_text
+
+sed -i "s/$/$append_text/" "$file"
+
+echo -e "\nUpdated file content:"
+cat "$file"
+
+
+
+
+
+result:
+
+Enter the file name: text.txt
+Enter the text you want to append to each line: ansar
+
+Updated file content:
+Hello universe!ansar
+The universe is beautiful.ansar
+ansar
