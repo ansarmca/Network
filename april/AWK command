@@ -1,0 +1,38 @@
+text.txt:
+--------
+1 John 85
+2 Alice 90
+3 Bob 78
+4 Carol 88
+5 Dave 92
+
+syntx: awk 'pattern {action}' filename
+
+1)Print the entire file:
+ awk '{print}' text.txt
+
+1 John 85
+2 Alice 90
+3 Bob 78
+4 Carol 88
+5 Dave 92
+
+2) print first column
+awk '{print $1}' text.txt
+
+1
+2
+3
+4
+5
+
+3)Print all lines with file number (Line number):
+ awk '{print NR $0}' text.txt
+1
+2 1 John 85
+3 2 Alice 90
+4 3 Bob 78
+5 4 Carol 88
+6 5 Dave 92
+7
+
