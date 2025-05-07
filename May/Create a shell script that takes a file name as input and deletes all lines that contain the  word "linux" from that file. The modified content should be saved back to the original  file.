@@ -1,0 +1,4 @@
+read -p "Enter filename: " filename
+sed -i '/linux/d' "$filename"
+
+echo "All lines containing 'linux' have been deleted from $filename."
