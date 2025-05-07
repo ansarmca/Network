@@ -1,0 +1,30 @@
+#!/bin/bash
+
+while true; do
+    echo "1. Delete lines containing a word"
+    echo "2. Count word occurrences"
+    echo "3. Exit"
+    read -p "Enter your choice: " choice
+
+    case $choice in
+        1)
+            read -p "Enter filename: " file
+            read -p "Enter word to delete lines: " word
+            sed -i "/$word/d" "$file"
+            echo "Lines with '$word' deleted."
+            ;;
+        2)
+            read -p "Enter filename: " file
+            tr -s ' ' '\n' < "$file" | sort | uniq -c
+            ;;
+        3)
+            echo "Goodbye!"
+            exit
+            ;;
+        *)
+            echo "Invalid choice."
+            ;;
+    esac
+
+    echo
+done
