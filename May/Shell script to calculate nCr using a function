@@ -1,0 +1,18 @@
+factorial() {
+  fact=1
+  for (( i=1; i<=$1; i++ )); do
+    fact=$((fact * i))
+  done
+  echo $fact
+}
+
+read -p "Enter value of n: " n
+read -p "Enter value of r: " r
+
+fn=$(factorial $n)
+fr=$(factorial $r)
+fnr=$(factorial $((n - r)))
+
+ncr=$((fn / (fr * fnr)))
+
+echo "nCr = $ncr"
