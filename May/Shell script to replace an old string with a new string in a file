@@ -1,0 +1,8 @@
+
+read -p "Enter filename: " filename
+read -p "Enter old string: " old
+read -p "Enter new string: " new
+
+sed -i "s/$old/$new/g" "$filename"
+
+echo "All occurrences of '$old' have been replaced with '$new' in $filename."
