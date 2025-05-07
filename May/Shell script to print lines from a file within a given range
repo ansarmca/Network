@@ -1,0 +1,5 @@
+read -p "Enter filename: " filename
+read -p "Enter start line: " start
+read -p "Enter end line: " end
+
+sed -n "${start},${end}p" "$filename"
