@@ -1,0 +1,26 @@
+while true
+do
+  echo "Menu:"
+  echo "1. Display file lines in reverse"
+  echo "2. List all files in a directory"
+  echo "3. Exit"
+  read -p "Enter your choice: " choice
+
+  case $choice in
+    1)
+      read -p "Enter filename: " file
+      tac "$file"
+      ;;
+    2)
+      read -p "Enter directory path: " dir
+      ls "$dir"
+      ;;
+    3)
+      echo "Exiting..."
+      exit 0
+      ;;
+    *)
+      echo "Invalid choice."
+      ;;
+  esac
+done
