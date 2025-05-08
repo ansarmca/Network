@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Ask for the filename
+echo "Enter filename:"
+read filename
+
+# Check if the file exists
+if [ -f "$filename" ]; then
+    echo "Lines: $(wc -l < "$filename")"
+    echo "Words: $(wc -w < "$filename")"
+    echo "Characters: $(wc -m < "$filename")"
+else
+    echo "File not found!"
+fi
