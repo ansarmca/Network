@@ -1,0 +1,14 @@
+read -p "Enter start line number to delete: " start
+read -p "Enter end line number to delete: " end
+read -p "Enter the filename: " file
+
+# Check if file exists
+if [[ ! -f "$file" ]]; then
+  echo "File not found!"
+  exit 1
+fi
+
+# Delete the lines and save to a new file (or overwrite original)
+sed "${start},${end}d" "$file" > temp_file && mv temp_file "$file"
+
+echo "Lines $start to $end deleted from $file."
