@@ -1,0 +1,49 @@
+while true
+do
+    echo "------ File Type and Permission Menu ------"
+    echo "1. All ordinary files"
+    echo "2. All directory files"
+    echo "3. All special files"
+    echo "4. All files readable by owner, group, and others"
+    echo "5. All files writable by owner, group, and others"
+    echo "6. All files executable by owner, group, and others"
+    echo "7. Exit"
+    echo -n "Enter your choice [1-7]: "
+    read choice
+
+    case $choice in
+        1)
+            echo "Ordinary files:"
+            find . -type f
+            ;;
+        2)
+            echo "Directory files:"
+            find . -type d
+            ;;
+        3)
+            echo "Special files (block/char/socket):"
+            find . -type b -o -type c -o -type s
+            ;;
+        4)
+            echo "Files readable by owner, group, and others:"
+            find . -type f -perm -444
+            ;;
+        5)
+            echo "Files writable by owner, group, and others:"
+            find . -type f -perm -222
+            ;;
+        6)
+            echo "Files executable by owner, group, and others:"
+            find . -type f -perm -111
+            ;;
+        7)
+            echo "Exiting."
+            break
+            ;;
+        *)
+            echo "Invalid choice, try again."
+            ;;
+    esac
+
+    echo
+done
