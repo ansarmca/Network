@@ -1,0 +1,54 @@
+#!/bin/bash
+
+while true
+do
+  echo ""
+  echo "========= MENU ========="
+  echo "1. Enter your name and display hello with that name"
+  echo "2. Deny read, write, execute permissions for file abc.txt"
+  echo "3. Evaluate 20 * 30"
+  echo "4. List files with details"
+  echo "5. Join files"
+  echo "6. Exit"
+  echo "========================"
+  read -p "Enter your choice [1-6]: " choice
+
+  case $choice in
+    1)
+      read -p "Enter your name: " name
+      echo "Hello, $name!"
+      ;;
+    2)
+      if [ -f "abc.txt" ]; then
+        chmod a-rwx abc.txt
+        echo "Permissions revoked for abc.txt"
+      else
+        echo "File abc.txt does not exist."
+      fi
+      ;;
+    3)
+      echo "Result: $((20 * 30))"
+      ;;
+    4)
+      ls -l
+      ;;
+    5)
+      read -p "Enter first filename: " file1
+      read -p "Enter second filename: " file2
+      read -p "Enter output filename: " outfile
+      if [ -f "$file1" ] && [ -f "$file2" ]; then
+        cat "$file1" "$file2" > "$outfile"
+        echo "Files joined into $outfile"
+      else
+        echo "One or both files do not exist."
+      fi
+      ;;
+    6)
+      echo "Exiting program. Goodbye!"
+      break
+      ;;
+    *)
+      echo "Invalid choice. Please enter a number between 1 and 6."
+      ;;
+  esac
+done
