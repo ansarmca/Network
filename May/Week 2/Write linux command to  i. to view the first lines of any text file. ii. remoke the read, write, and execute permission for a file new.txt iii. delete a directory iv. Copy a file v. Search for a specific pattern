@@ -1,0 +1,69 @@
+#!/bin/bash
+
+while true
+do
+  echo ""
+  echo "========= MENU ========="
+  echo "1. View the first lines of a text file"
+  echo "2. Revoke read, write, and execute permissions for a file (new.txt)"
+  echo "3. Delete a directory"
+  echo "4. Copy a file"
+  echo "5. Search for a specific pattern in a file"
+  echo "6. Exit"
+  echo "========================"
+  read -p "Enter your choice [1-6]: " choice
+
+  case $choice in
+    1)
+      read -p "Enter filename: " fname
+      if [ -f "$fname" ]; then
+        head "$fname"
+      else
+        echo "File not found."
+      fi
+      ;;
+    2)
+      if [ -f "new.txt" ]; then
+        chmod a-rwx new.txt
+        echo "Permissions revoked for 'new.txt'."
+      else
+        echo "'new.txt' does not exist."
+      fi
+      ;;
+    3)
+      read -p "Enter directory name to delete: " dir
+      if [ -d "$dir" ]; then
+        rm -r "$dir"
+        echo "Directory '$dir' deleted."
+      else
+        echo "Directory not found."
+      fi
+      ;;
+    4)
+      read -p "Enter source file: " src
+      read -p "Enter destination file: " dest
+      if [ -f "$src" ]; then
+        cp "$src" "$dest"
+        echo "File copied from '$src' to '$dest'."
+      else
+        echo "Source file does not exist."
+      fi
+      ;;
+    5)
+      read -p "Enter pattern to search: " pattern
+      read -p "Enter filename to search in: " fname
+      if [ -f "$fname" ]; then
+        grep "$pattern" "$fname"
+      else
+        echo "File not found."
+      fi
+      ;;
+    6)
+      echo "Exiting program. Goodbye!"
+      break
+      ;;
+    *)
+      echo "Invalid choice. Please enter a number between 1 and 6."
+      ;;
+  esac
+done
