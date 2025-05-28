@@ -1,0 +1,70 @@
+#!/bin/bash
+
+while true
+do
+  echo ""
+  echo "======= MENU ======="
+  echo "1. View the first lines of a text file"
+  echo "2. Change read, write, execute permissions of a file"
+  echo "3. Delete a directory"
+  echo "4. Copy a file"
+  echo "5. Search for letter 'A' in a file"
+  echo "6. Exit"
+  echo "===================="
+  read -p "Enter your choice [1-6]: " choice
+
+  case $choice in
+    1)
+      read -p "Enter filename: " file
+      if [ -f "$file" ]; then
+        head "$file"
+      else
+        echo "File not found."
+      fi
+      ;;
+    2)
+      read -p "Enter filename: " file
+      if [ -f "$file" ]; then
+        read -p "Enter permissions (e.g., 755): " perms
+        chmod "$perms" "$file"
+        echo "Permissions of '$file' changed to $perms."
+      else
+        echo "File not found."
+      fi
+      ;;
+    3)
+      read -p "Enter directory name to delete: " dir
+      if [ -d "$dir" ]; then
+        rmdir "$dir" 2>/dev/null || rm -r "$dir"
+        echo "Directory '$dir' deleted."
+      else
+        echo "Directory not found."
+      fi
+      ;;
+    4)
+      read -p "Enter source filename: " src
+      read -p "Enter destination filename: " dest
+      if [ -f "$src" ]; then
+        cp "$src" "$dest"
+        echo "File copied from '$src' to '$dest'."
+      else
+        echo "Source file not found."
+      fi
+      ;;
+    5)
+      read -p "Enter filename to search for 'A': " file
+      if [ -f "$file" ]; then
+        grep --color=always "A" "$file"
+      else
+        echo "File not found."
+      fi
+      ;;
+    6)
+      echo "Exiting program."
+      break
+      ;;
+    *)
+      echo "Invalid choice. Please enter a number between 1 and 6."
+      ;;
+  esac
+done
