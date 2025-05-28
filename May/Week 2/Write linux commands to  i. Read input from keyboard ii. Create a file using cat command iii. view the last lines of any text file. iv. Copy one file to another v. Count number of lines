@@ -1,0 +1,62 @@
+#!/bin/bash
+
+while true
+do
+  echo ""
+  echo "========= MENU ========="
+  echo "1. Read input from keyboard"
+  echo "2. Create a file using cat command"
+  echo "3. View the last lines of a text file"
+  echo "4. Copy one file to another"
+  echo "5. Count number of lines in a file"
+  echo "6. Exit"
+  echo "========================"
+  read -p "Enter your choice [1-6]: " choice
+
+  case $choice in
+    1)
+      read -p "Enter something: " input
+      echo "You entered: $input"
+      ;;
+    2)
+      read -p "Enter filename to create: " filename
+      echo "Enter content (Press Ctrl+D to save):"
+      cat > "$filename"
+      echo "File '$filename' created."
+      ;;
+    3)
+      read -p "Enter filename to view last lines: " filename
+      if [ -f "$filename" ]; then
+        tail "$filename"
+      else
+        echo "File not found."
+      fi
+      ;;
+    4)
+      read -p "Enter source filename: " src
+      read -p "Enter destination filename: " dest
+      if [ -f "$src" ]; then
+        cp "$src" "$dest"
+        echo "File copied from '$src' to '$dest'."
+      else
+        echo "Source file does not exist."
+      fi
+      ;;
+    5)
+      read -p "Enter filename to count lines: " filename
+      if [ -f "$filename" ]; then
+        lines=$(wc -l < "$filename")
+        echo "Number of lines in '$filename': $lines"
+      else
+        echo "File not found."
+      fi
+      ;;
+    6)
+      echo "Exiting program. Goodbye!"
+      break
+      ;;
+    *)
+      echo "Invalid choice. Enter a number between 1 and 6."
+      ;;
+  esac
+done
