@@ -1,0 +1,52 @@
+#!/bin/bash
+
+while true
+do
+  echo ""
+  echo "========= MENU ========="
+  echo "1. Copy a file"
+  echo "2. Print lines in a particular range using head and tail"
+  echo "3. Create a blank new file and make it executable"
+  echo "4. Delete a file"
+  echo "5. Search for a particular pattern in a file"
+  echo "6. Exit"
+  echo "========================"
+  read -p "Enter your choice: " choice
+
+  case $choice in
+    1)
+      read -p "Enter source file name: " src
+      read -p "Enter destination file name: " dest
+      cp "$src" "$dest" && echo "File copied successfully." || echo "Failed to copy file."
+      ;;
+    2)
+      read -p "Enter filename: " fname
+      read -p "Enter start line number: " start
+      read -p "Enter end line number: " end
+      count=$((end - start + 1))
+      head -n "$end" "$fname" | tail -n "$count"
+      ;;
+    3)
+      read -p "Enter new file name (with .sh or .py, etc.): " filename
+      touch "$filename"
+      chmod +x "$filename"
+      echo "Blank file '$filename' created and made executable."
+      ;;
+    4)
+      read -p "Enter file name to delete: " del_file
+      rm "$del_file" && echo "File deleted." || echo "File not found or deletion failed."
+      ;;
+    5)
+      read -p "Enter pattern to search: " pattern
+      read -p "Enter file name to search in: " search_file
+      grep "$pattern" "$search_file"
+      ;;
+    6)
+      echo "Exiting program. Goodbye!"
+      break
+      ;;
+    *)
+      echo "Invalid choice. Please try again."
+      ;;
+  esac
+done
