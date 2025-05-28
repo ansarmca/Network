@@ -1,0 +1,55 @@
+#!/bin/bash
+
+while true
+do
+  echo ""
+  echo "========= MENU ========="
+  echo "1. Show current working directory"
+  echo "2. List all files with details"
+  echo "3. View the last lines of a text file"
+  echo "4. Create a blank new file"
+  echo "5. Delete a file"
+  echo "6. Exit"
+  echo "========================"
+  read -p "Enter your choice [1-6]: " choice
+
+  case $choice in
+    1)
+      echo "Current working directory:"
+      pwd
+      ;;
+    2)
+      echo "Listing all files with details:"
+      ls -la
+      ;;
+    3)
+      read -p "Enter filename: " fname
+      if [ -f "$fname" ]; then
+        tail "$fname"
+      else
+        echo "File not found."
+      fi
+      ;;
+    4)
+      read -p "Enter name for the new blank file: " newfile
+      touch "$newfile"
+      echo "File '$newfile' created."
+      ;;
+    5)
+      read -p "Enter filename to delete: " del
+      if [ -f "$del" ]; then
+        rm "$del"
+        echo "File '$del' deleted."
+      else
+        echo "File not found."
+      fi
+      ;;
+    6)
+      echo "Exiting program. Goodbye!"
+      break
+      ;;
+    *)
+      echo "Invalid choice. Please enter a number between 1 and 6."
+      ;;
+  esac
+done
