@@ -1,0 +1,58 @@
+#!/bin/bash
+
+while true
+do
+  echo ""
+  echo "========= MENU ========="
+  echo "1. View the first lines of a text file"
+  echo "2. Revoke write and execute permission for hello.txt"
+  echo "3. Create a directory 'ABC' and make it only readable"
+  echo "4. Rename (move) file copy.txt to copy2.txt"
+  echo "5. Display contents of a file"
+  echo "6. Exit"
+  echo "========================"
+  read -p "Enter your choice [1-6]: " choice
+
+  case $choice in
+    1)
+      read -p "Enter filename: " fname
+      head "$fname"
+      ;;
+    2)
+      if [ -e hello.txt ]; then
+        chmod a-wx hello.txt
+        echo "Write and execute permissions revoked for hello.txt"
+      else
+        echo "File hello.txt not found."
+      fi
+      ;;
+    3)
+      mkdir -p ABC
+      chmod 555 ABC
+      echo "Directory 'ABC' created with read and execute permissions only."
+      ;;
+    4)
+      if [ -e copy.txt ]; then
+        mv copy.txt copy2.txt
+        echo "File renamed to copy2.txt"
+      else
+        echo "File copy.txt not found."
+      fi
+      ;;
+    5)
+      read -p "Enter filename: " fname
+      if [ -e "$fname" ]; then
+        cat "$fname"
+      else
+        echo "File not found."
+      fi
+      ;;
+    6)
+      echo "Exiting program. Goodbye!"
+      break
+      ;;
+    *)
+      echo "Invalid choice. Please enter a number between 1 and 6."
+      ;;
+  esac
+done
