@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Prompt user for input
+read -p "Enter the file name: " filename
+read -p "Enter the start line number: " start_line
+read -p "Enter the end line number: " end_line
+
+# Check if file exists
+if [ ! -f "$filename" ]; then
+    echo "Error: File '$filename' not found!"
+    exit 1
+fi
+
+# Check if start and end lines are numbers
+if ! [[ "$start_line" =~ ^[0-9]+$ ]] || ! [[ "$end_line" =~ ^[0-9]+$ ]]; then
+    echo "Error: Line numbers must be positive integers."
+    exit 1
+fi
+
+# Print the lines in the specified inclusive range
+sed -n "${start_line},${end_line}p" "$filename"
