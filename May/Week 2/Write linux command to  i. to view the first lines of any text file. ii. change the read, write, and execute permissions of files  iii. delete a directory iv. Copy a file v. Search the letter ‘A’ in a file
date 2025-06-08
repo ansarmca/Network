@@ -52,13 +52,13 @@ do
       fi
       ;;
     5)
-      read -p "Enter filename to search for 'A': " file
+      read -p "Enter filename: " file
       if [ -f "$file" ]; then
-        grep --color=always "A" "$file"
+          grep "A" "$file"
       else
-        echo "File not found."
+          echo "File not found."
       fi
-      ;;
+
     6)
       echo "Exiting program."
       break
