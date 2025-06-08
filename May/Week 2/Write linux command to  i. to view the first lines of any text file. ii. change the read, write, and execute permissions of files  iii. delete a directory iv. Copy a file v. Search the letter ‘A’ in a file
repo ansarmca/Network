@@ -35,12 +35,12 @@ do
     3)
       read -p "Enter directory name to delete: " dir
       if [ -d "$dir" ]; then
-        rmdir "$dir" 2>/dev/null || rm -r "$dir"
-        echo "Directory '$dir' deleted."
+          rm -r "$dir"
+          echo "Directory '$dir' deleted."
       else
-        echo "Directory not found."
+          echo "Directory not found."
       fi
-      ;;
+
     4)
       read -p "Enter source filename: " src
       read -p "Enter destination filename: " dest
