@@ -16,15 +16,10 @@ do
   case $choice in
     1)
       read -p "Enter filename: " file
-      if [ ! -f "$file" ]; then
-        echo "File not found."
-        continue
-      fi
       read -p "Enter delimiter (e.g. , or space): " delim
-      read -p "Enter field numbers to cut (e.g. 1-3 or 2): " fields
-      echo "Cut output:"
+      read -p "Enter field number(s) (e.g. 1 or 1,3): " fields
       cut -d"$delim" -f"$fields" "$file"
-      ;;
+
     2)
       ls -l
       ;;
